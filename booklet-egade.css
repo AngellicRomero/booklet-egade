@@ -88,6 +88,11 @@ body{font-family:var(--bd);color:var(--tx);background:var(--bg);display:flex;fle
 .ab-sm:hover{color:#111}
 .ap-time{display:flex;justify-content:space-between;font-family:var(--mn);font-size:8px;color:#999;margin-top:-6px;margin-bottom:4px}
 .aw{display:none}
+.vw-soon .vd-poster,.vd-soon{cursor:default;background:#FAFAFA}
+.vw-soon .vd-poster:hover{background:#FAFAFA}
+.ap-soon{opacity:.65}
+.ap-soon .ab,.ap-soon .ab-sm{cursor:not-allowed;opacity:.5}
+.ap-soon .ap-progress{cursor:default}
 .b:nth-child(1){height:4px}.b:nth-child(2){height:9px;animation-delay:.1s}.b:nth-child(3){height:5px;animation-delay:.2s}.b:nth-child(4){height:11px;animation-delay:.3s}.b:nth-child(5){height:4px;animation-delay:.4s}.b:nth-child(6){height:8px;animation-delay:.5s}.b:nth-child(7){height:10px;animation-delay:.6s}.b:nth-child(8){height:4px;animation-delay:.7s}
 @keyframes wv{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.3)}}
 
