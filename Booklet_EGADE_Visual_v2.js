@@ -2,7 +2,7 @@ const LOGO='egade-business-school-logo.jpg';
 function LG(h){return `<img src="${LOGO}" style="height:${h||15}px;object-fit:contain;mix-blend-mode:multiply">`}
 let score=0,imgC=0,vidC=0,auC=0,xpC=0;
 const viewed={};
-function IM(desc,ar,sz){imgC++;const rid='img-'+imgC;return `<div class="img-slot" data-rid="${rid}" style="aspect-ratio:${ar||'16/9'};background:url('imagen-de-prueba.jpg') center/cover no-repeat" onclick="fsOpen(this,'img');markViewed(this)"><button class="fs-btn" onclick="event.stopPropagation();fsOpen(this.parentElement,'img');markViewed(this.parentElement)">&#x26F6;</button><div class="img-n" style="background:rgba(255,255,255,.85);padding:2px 8px;border-radius:4px">Imagen ${imgC}</div><div class="img-d" style="background:rgba(255,255,255,.85);padding:1px 6px;border-radius:3px">${desc||''}</div></div>`}
+function IM(desc,ar,sz,img){imgC++;const rid='img-'+imgC;return `<div class="img-slot" data-rid="${rid}" style="aspect-ratio:${ar||'16/9'};background:url('${img||'imagen-de-prueba.jpg'}') center/cover no-repeat" onclick="fsOpen(this,'img');markViewed(this)"><button class="fs-btn" onclick="event.stopPropagation();fsOpen(this.parentElement,'img');markViewed(this.parentElement)">&#x26F6;</button><div class="img-n" style="background:rgba(255,255,255,.85);padding:2px 8px;border-radius:4px">Imagen ${imgC}</div><div class="img-d" style="background:rgba(255,255,255,.85);padding:1px 6px;border-radius:3px">${desc||''}</div></div>`}
 function VD(lbl,dur,mp4){vidC++;const rid='vid-'+vidC;return `<div class="vw" data-rid="${rid}"><button class="fs-btn" onclick="fsOpen(this.parentElement,'vid');markViewed(this.parentElement)">&#x26F6;</button><div class="vd-poster" id="vp-${vidC}" onclick="startVD(this,${vidC})"><img src="${LOGO}" style="height:48px;object-fit:contain;opacity:.8"><div style="margin-top:10px;font-size:13px;font-weight:600;color:#333">${lbl}</div><div style="margin-top:4px;font-size:10px;color:#999">${dur}</div><div class="vd-play">&#9654;</div></div><video id="vv-${vidC}" controls preload="metadata" style="width:100%;aspect-ratio:16/9;background:#fff;display:none" onplay="markViewed(this.closest('.vw'))"><source src="${mp4||'video-prueba.mp4'}" type="video/mp4"></video><div class="vl"><span>Video ${vidC} — ${lbl}</span><span>${dur}</span></div></div>`}
 function AU(lbl,dur,src){auC++;const rid='au-'+auC;const id=auC;return `<div class="ap" data-rid="${rid}" data-au-id="${id}">
 <audio id="aud-${id}" ${src?'src="'+src+'"':''} preload="metadata"></audio>
@@ -219,7 +219,7 @@ ${AU('Vida en campus','01:30')}
 // ═══ 3b: SEC 01 — Quiz P1 ═══
 {lh:'SECCIÓN 01 | BIENVENIDO A EGADE',l:`<div class="pb" style="position:relative">
 <div class="geo geo-3"></div>
-<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagen-de-prueba.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 01</div><div class="img-d">Resumen visual — Bienvenida a EGADE</div></div>
+<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagenes/imagen-17.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 01</div><div class="img-d">Resumen visual — Bienvenida a EGADE</div></div>
 </div>`,
 rh:'ACTIVIDAD',r:`<div class="pb">
 <div class="sq-wrap" data-sec="1"><div class="sq-hd"> Actividad — Sección 01 (1/2)</div><div class="sq-bd">
@@ -246,14 +246,14 @@ ${TKW('Sec 01 — Bienvenida a EGADE','4 fases del onboarding, 25 tareas, actore
 </div></div></div>`,t:'Quiz 01b'},
 
 // ═══ SPREAD DOBLE — ESCUELA Y PROGRAMAS ═══
-{l:`<div class="pg-spread pg-spread-l" style="background:url('imagenes/imagen-02.jpg') 0% 0%/200% 100% no-repeat">
+{l:`<div class="pg-spread pg-spread-l" style="background:url('imagenes/imagen-egade-mtry.jpg') 0% 0%/200% 100% no-repeat">
 <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-start;padding:30px 32px;z-index:2">
 <div style="font-family:var(--mn);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#C9A84C;margin-bottom:6px">Sección 02</div>
 <h2 style="font-family:var(--hd);font-size:28px;font-weight:700;color:var(--wh);line-height:1.15">Escuela y<br>Programas</h2>
 <p style="font-size:14px;color:rgba(255,255,255,.8);margin:4px 0 0">5 programas de maestría para formar líderes globales</p>
 </div>
 </div>`,lc:'cv',
-r:`<div class="pg-spread pg-spread-r" style="background:url('imagenes/imagen-02.jpg') 100% 0%/200% 100% no-repeat">
+r:`<div class="pg-spread pg-spread-r" style="background:url('imagenes/imagen-egade-mtry.jpg') 100% 0%/200% 100% no-repeat">
 </div>`,rc:'cv',t:'Escuela Spread'},
 
 // ═══ 5: SEC 02 — Quote left + Content right ═══
@@ -282,10 +282,10 @@ ${AU('Estructura academica','02:00')}
 
 // ═══ 6: SEC 02 — Mosaic left + Video right ═══
 {lh:'SECCIÓN 02 | ESCUELA Y PROGRAMAS',l:`<div class="pg-mosaic">
-${IM('Aula EGADE','16/9','Foto 1')}
-${IM('Biblioteca EGADE','16/9','Foto 2')}
-${IM('Laboratorio tecnologia','16/9','Foto 3')}
-${IM('Espacio coworking','16/9','Foto 4')}
+${IM('Aula EGADE','16/9','Foto 1','imagenes/imagen-08.jpg')}
+${IM('Biblioteca EGADE','16/9','Foto 2','imagenes/imagen-09.jpg')}
+${IM('Laboratorio tecnologia','16/9','Foto 3','imagenes/imagen-10.jpg')}
+${IM('Espacio coworking','16/9','Foto 4','imagenes/gnam-monterrey-mayo-2025.jpg')}
 </div>`,lc:'cv',
 rh:'SEC 02',r:`<div class="pb" style="position:relative">
 <div class="geo geo-4"></div>
@@ -304,7 +304,7 @@ ${AVT('Tip','T','La escuela tiene <strong>4 departamentos</strong>: Finanzas, Es
 {lh:'SECCIÓN 02 | ESCUELA Y PROGRAMAS',l:`<div class="pb" style="position:relative">
 <div class="geo geo-2"></div>
 <p style="font-size:11px;color:var(--t3);margin:0 0 4px;line-height:1.5">Esta infografía resume la estructura organizacional de EGADE: los cinco programas de maestría, los cuatro departamentos académicos y los roles clave que te acompañarán. Consúltala como referencia rápida para identificar quién es quién en la Escuela y a quién acudir según tus necesidades como profesor.</p>
-<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagen-de-prueba.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 02</div><div class="img-d">Programas y departamentos</div></div>
+<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagenes/imagen-18.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 02</div><div class="img-d">Programas y departamentos</div></div>
 <p style="font-size:11px;color:var(--t3);margin:4px 0;line-height:1.5">Los estudiantes de EGADE son profesionales en activo con entre 3 y 10 años de experiencia laboral en posiciones de responsabilidad. Tienen un perfil ejecutivo orientado a resultados, pensamiento estratégico y visión de liderazgo. Provienen de diversas industrias, funciones y, en muchos casos, de distintos países, lo que enriquece significativamente las discusiones en el aula.</p>
 ${IM('Estudiantes colaborando','4/3','Foto horizontal')}
 <h3 style="font-size:13px;margin:8px 0 4px">Vida estudiantil en EGADE</h3>
@@ -359,7 +359,7 @@ ${DYK('<strong>Sabias que</strong> AoL mide aprendizaje con <strong>evidencias c
 {lh:'SECCIÓN 03 | MODELO EDUCATIVO',l:`<div class="pb" style="position:relative">
 <div class="geo geo-3"></div>
 <p style="font-size:11px;color:var(--t3);margin:0 0 4px;line-height:1.5">Esta infografía presenta de forma visual los cuatro pilares del modelo educativo y cómo se conectan entre sí. Desde el propósito formativo que guía toda la experiencia, pasando por las competencias CPE y CT que se desarrollan en cada curso, hasta el AoL que asegura que el aprendizaje se está logrando con evidencias medibles. Descárgala como referencia para el diseño de tus sesiones.</p>
-<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagen-de-prueba.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 03</div><div class="img-d">Pilares del modelo educativo</div></div>
+<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagenes/imagen-19.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 03</div><div class="img-d">Pilares del modelo educativo</div></div>
 <p style="font-size:11px;color:var(--t3);margin:4px 0;line-height:1.5">Para implementar estos pilares en tu práctica docente, cuentas con el apoyo del equipo de Innovación Educativa. Ellos te asesoran en el diseño de actividades de aprendizaje activo, la formulación de Business Questions efectivas, la integración de tecnología educativa y el uso de estrategias de evaluación formativa que desarrollen las competencias declaradas en tu syllabus.</p>
 ${AVT('IE','IE','<strong>Innovacion Educativa</strong> te apoya con metodologias activas.')}
 <div style="height:6px"></div>
@@ -444,7 +444,7 @@ ${AVT('Canvas','C','Usa el <strong>Syllabus Maker</strong> integrado para genera
 {lh:'SECCIÓN 04 | TU CURSO EN CANVAS',l:`<div class="pb" style="position:relative">
 <div class="geo geo-3"></div>
 <p style="font-size:11px;color:var(--t3);margin:0 0 4px;line-height:1.5">Esta infografía resume los cinco pasos para tener tu curso listo: copiar contenido de cursos anteriores (módulo por módulo, archivo .imscc o curso completo), organizar módulos con encabezados y sangrías para facilitar la navegación, agregar archivos y ligas externas, configurar la evaluación con grupos de tareas ponderados, y finalmente publicar verificando que todo funcione correctamente.</p>
-<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagen-de-prueba.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 04</div><div class="img-d">5 pasos para tu curso en Canvas</div></div>
+<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagenes/imagen-20.jpeg') center/cover no-repeat"><div class="img-n">Infografia Sec 04</div><div class="img-d">5 pasos para tu curso en Canvas</div></div>
 <p style="font-size:11px;color:var(--t3);margin:4px 0;line-height:1.5">Las guías CanvasProSeries son tutoriales visuales organizados en tres series temáticas con más de 16 instructivos paso a paso: Serie 1 para copiar y actualizar contenido, Serie 2 para publicar y organizar módulos con archivos, ligas y encabezados, y Serie 3 para crear tareas, configurar ponderaciones y habilitar la coevaluación. Cada guía incluye capturas de pantalla detalladas para que puedas replicar cada acción fácilmente.</p>
 ${IM('Profesor usando laptop','2/3','Foto vertical rectangular')}
 </div>`,
@@ -497,7 +497,7 @@ ${AVT('Eval','E','Los grupos de tareas deben sumar <strong>100%</strong>.')}
 {lh:'SECCIÓN 05 | EVALUACIÓN',l:`<div class="pb" style="position:relative">
 <div class="geo geo-2"></div>
 <p style="font-size:11px;color:var(--t3);margin:0 0 4px;line-height:1.5">Esta infografía te guía paso a paso en la configuración de la evaluación: primero creas los grupos de tareas que reflejen los rubros de tu syllabus (examen, participación, tareas individuales, evidencia aplicada, proyecto y colaborativos), luego asignas los porcentajes asegurando que sumen 100%, después creas las tareas con instrucciones claras y fechas de entrega, y finalmente publicas las rúbricas para cada actividad evaluada.</p>
-<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagen-de-prueba.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 05</div><div class="img-d">Configurar evaluacion paso a paso</div></div>
+<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagenes/imagen-21.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 05</div><div class="img-d">Configurar evaluacion paso a paso</div></div>
 <p style="font-size:11px;color:var(--t3);margin:4px 0;line-height:1.5">El libro de calificaciones de Canvas permite que tus alumnos consulten su avance en tiempo real por cada rubro de evaluación. Al configurar correctamente los grupos de tareas y sus ponderaciones, Canvas calcula automáticamente la calificación final. Esto genera transparencia y reduce las consultas sobre calificaciones, ya que cada estudiante puede ver exactamente cómo va en cada componente del curso.</p>
 ${IM('Calificaciones en Canvas','16/9','Captura horizontal')}
 </div>`,
@@ -562,7 +562,7 @@ ${AVT('Apoyo','A','Contactanos para cualquier duda.')}
 rh:'SEC 06',r:`<div class="pb" style="position:relative">
 <div class="geo geo-4"></div>
 <p style="font-size:11px;color:var(--t3);margin:0 0 4px;line-height:1.5">Consulta esta infografía con el directorio completo de los equipos de apoyo, sus funciones y datos de contacto para que sepas a quién acudir en cada situación.</p>
-<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagen-de-prueba.jpg') center/cover no-repeat"><div class="img-n">Infografia Sec 06</div><div class="img-d">Directorio de equipos y contactos</div></div>
+<div class="img-half-v" onclick="fsOpen(this,'img')" style="background:url('imagenes/imagen-24.jpeg') center/cover no-repeat"><div class="img-n">Infografia Sec 06</div><div class="img-d">Directorio de equipos y contactos</div></div>
 <h3 style="font-size:13px;margin:8px 0 4px">Programa de mentores</h3>
 <p style="font-size:11px;color:var(--t3);margin:0 0 6px;line-height:1.5">EGADE cuenta con un programa de mentores donde tu Director de Departamento puede asignarte un colega experimentado que te acompañe durante tus primeros meses. No es una supervisión, es un apoyo entre pares: orientación sobre la cultura de la escuela, consejos para gestionar tu curso y oportunidades de colaboración e investigación.</p>
 ${AU('Programa de mentores','01:45')}
@@ -601,7 +601,7 @@ ${TKW('Sec 06 — Desarrollo y Contactos','Equipo de Desarrollo Académico, 3 tr
 
 // ═══ 24: CIERRE ═══
 {l:`<div class="pg-full">
-${IM('Campus EGADE atardecer','16/9','Full-bleed')}
+${IM('Campus EGADE atardecer','16/9','Full-bleed','imagenes/diseno-sin-titulo-1.jpg')}
 <div class="pg-overlay"><div class="pg-tag">Felicidades</div><h2>Booklet<br>completado</h2><p>Has finalizado tu guia de integracion</p></div>
 </div>`,lc:'cv',
 r:`<div class="pb" style="justify-content:center;padding:24px 30px;position:relative">
@@ -707,7 +707,7 @@ function uP(){const t=document.querySelectorAll('.cx').length,d=document.querySe
 function fsOpen(el,type){
   const cont=document.getElementById('fsCont');cont.innerHTML='';
   if(type==='vid'){const v=el.querySelector('video');if(v){const c=v.cloneNode(true);c.style.cssText='max-width:90vw;max-height:85vh;border-radius:6px';c.controls=true;c.removeAttribute('onplay');cont.appendChild(c);c.play().catch(()=>{})}}
-  else{const img=document.createElement('img');img.src='imagen-de-prueba.jpg';img.style.cssText='max-width:90vw;max-height:85vh;border-radius:8px;object-fit:contain';
+  else{const img=document.createElement('img');const bg=el.style.backgroundImage||getComputedStyle(el).backgroundImage;const m=bg.match(/url\(['"]?([^'")]+)['"]?\)/);img.src=m?m[1]:'imagen-de-prueba.jpg';img.style.cssText='max-width:90vw;max-height:85vh;border-radius:8px;object-fit:contain';
     cont.appendChild(img)}
   document.getElementById('fsOv').classList.add('sh');
 }
